@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.Random;
 
 public class CarGame extends JFrame {
@@ -43,9 +44,13 @@ public class CarGame extends JFrame {
         private boolean paint=false;
 
 
-
-
-
-
-
+        public CarGame(String title)  {
+                super(title);
+                setBounds(300,10,700,700);
+                setVisible(true);
+                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                setLayout(null);//set the layout null
+                setFocusable(true); //set the focus on null
+                setResizable(false); //set not resize able
+        }
 }
