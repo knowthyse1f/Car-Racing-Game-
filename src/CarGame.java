@@ -1,5 +1,7 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.Random;
 
 public class CarGame extends JFrame {
@@ -43,7 +45,6 @@ public class CarGame extends JFrame {
         private boolean gameOver=false;
         private boolean paint=false;
 
-
         public CarGame(String title)  {
                 super(title);
                 setBounds(300,10,700,700);
@@ -52,5 +53,50 @@ public class CarGame extends JFrame {
                 setLayout(null);//set the layout null
                 setFocusable(true); //set the focus on null
                 setResizable(false); //set not resize able
+
         }
+        public void paint(Graphics gfx){
+                gfx.setColor(Color.GREEN);
+                gfx.fillRect(0,0,700,700);
+                gfx.setColor(Color.gray);
+                gfx.fillRect(90,0,10,700);
+                gfx.fillRect(600,0,10,700);
+                gfx.fillRect(100,0,10,700);
+
+                if(roadMove==0){
+                        for(int i=0;i<=700;i++){
+                                gfx.setColor(Color.WHITE);
+                                gfx.fillRect(350,i,10,70);
+                        }
+                        roadMove=1;
+                }
+                else if(roadMove==1){
+                        for(int i=0;i<=700;i++){
+                                gfx.setColor(Color.WHITE);
+                                gfx.fillRect(350,i,10,70);
+                        }
+                        roadMove=0;
+                }
+                try{
+                        tree1=new ImageIcon(ImageIO.read(getClass()
+                                .getClassLoader()
+                                .getResourceAsStream("images/tree.jpg")));
+                        tree2=new ImageIcon(ImageIO.read(getClass()
+                                .getClassLoader()
+                                .getResourceAsStream("images/tree.jpg")));
+                        tree3=new ImageIcon(ImageIO.read(getClass()
+                                .getClassLoader()
+                                .getResourceAsStream("images/tree.jpg")));
+                }catch(IOException e){
+                        e.printStackTrace();
+                }
+                tree1.paintIcon(this,gfx,0,tree1ypos);
+                num1=random.nextInt(500);
+                tree1ypos+=50;
+                tree2.paintIcon(this,gfx,0,tree2ypos);
+                tree2ypos+=50;
+                tree3.paintIcon(this,gfx,0,tree3ypos);
+                tree3ypos+=50;
+        }
+
 }
